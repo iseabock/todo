@@ -1,0 +1,9 @@
+%p#notice=notice
+
+%p
+  %b Name:
+  =@project.name
+
+=link_to 'Add Task', new_project_task_path(@project)
+\|
+=link_to 'Back', projects_path
