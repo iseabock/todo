@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_paper_trail_whodunnit
   before_action :get_project
-  before_action :set_task, only: [:show, :edit, :update, :destroy, :versions]
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   # GET /tasks
   # GET /tasks.json
@@ -20,23 +20,19 @@ class TasksController < ApplicationController
 
   # GET /tasks/1
   # GET /tasks/1.json
-  def show
-  end
+  def show; end
 
   # GET /tasks/new
   def new
-    # @task = @Project.task.new
     @task = @project.tasks.build
   end
 
   # GET /tasks/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /tasks
   # POST /tasks.json
   def create
-    # @task = Task.new(task_params)
     @task = @project.tasks.build(task_params)
 
     respond_to do |format|
