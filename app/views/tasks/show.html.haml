@@ -1,5 +1,4 @@
 %p#notice=notice
-
 %p
   %b Name:
   =@task.name
@@ -7,6 +6,6 @@
   %b Completed:
   =@task.completed
 
-=link_to 'Edit', edit_task_path(@task)
+=link_to 'Edit', edit_project_task_path(@task)
 \|
-=link_to 'Back', tasks_path
+=link_to 'Back', project_task_path

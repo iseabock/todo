@@ -1,0 +1,14 @@
+%h1 Versions
+
+-# TODO: Figure out where first empty is coming from
+-# It's not recording creation properly
+- if @task.versions.length > 1
+    %ul
+    - @task.versions.each do |version|
+        %li #{version.object}
+- else
+    %p This task has no versions other than the original.
+
+=link_to 'Back', project_tasks_path(@project)
+\|
+=link_to 'Add a task', new_project_task_path
