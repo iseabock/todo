@@ -75,10 +75,8 @@ class TasksController < ApplicationController
   end
 
   def versions
-    puts "params #{params}"
-    @task = @project.tasks.where("project_id = ? AND id = ?", params[:project_id], params[:task_id]).first
-    # puts "@task.versions #{task.versions}"
-    # @versions = task.versions
+    task = @project.tasks.where("project_id = ? AND id = ?", params[:project_id], params[:task_id]).first
+    @versions = task.versions.drop(1)
   end
 
   private
