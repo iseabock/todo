@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-    factory :project do
-      name { 'MyProject' }
-    end
+  factory :project do
+    name { 'MyProject' }
   end
+end

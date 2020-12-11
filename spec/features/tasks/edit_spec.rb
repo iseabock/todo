@@ -7,7 +7,7 @@ feature 'Editing a task' do
   let!(:task) { Task.create(name: 'Test my app', completed: false, project_id: project.id) }
 
   before(:each) do
-    user = User.create!(email: "example@example.com", password: "letmein")
+    user = User.create!(email: 'example@example.com', password: 'letmein')
     visit root_path(as: user)
   end
 

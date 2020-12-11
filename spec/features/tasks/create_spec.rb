@@ -4,7 +4,7 @@ require 'rails_helper'
 
 feature 'Creating a task' do
   before(:each) do
-    user = User.create!(email: "example@example.com", password: "letmein")
+    user = User.create!(email: 'example@example.com', password: 'letmein')
     visit root_path(as: user)
   end
 

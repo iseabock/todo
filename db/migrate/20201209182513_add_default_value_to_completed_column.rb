@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class AddDefaultValueToCompletedColumn < ActiveRecord::Migration[6.0]
   def change
-    change_column :tasks , :completed , :boolean, default: false
+    change_column :tasks, :completed, :boolean, default: false
   end
 end

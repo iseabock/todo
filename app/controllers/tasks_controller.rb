@@ -1,21 +1,23 @@
+# frozen_string_literal: true
+
 class TasksController < ApplicationController
   before_action :set_paper_trail_whodunnit
   before_action :get_project
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: %i[show edit update destroy]
 
   # GET /tasks
   # GET /tasks.json
   def index
     @tasks = case params['filter']
-              when 'all'
-                @project.tasks.all
-              when 'completed'
-                @project.tasks.where(completed: true)
-              when 'not_completed'
-                @project.tasks.where(completed: false)
-              else
-                @project.tasks.where(completed: false)
-              end
+             when 'all'
+               @project.tasks.all
+             when 'completed'
+               @project.tasks.where(completed: true)
+             when 'not_completed'
+               @project.tasks.where(completed: false)
+             else
+               @project.tasks.where(completed: false)
+             end
   end
 
   # GET /tasks/1
@@ -71,23 +73,24 @@ class TasksController < ApplicationController
   end
 
   def versions
-    task = @project.tasks.where("project_id = ? AND id = ?", params[:project_id], params[:task_id]).first
+    task = @project.tasks.where('project_id = ? AND id = ?', params[:project_id], params[:task_id]).first
     @versions = task.versions.drop(1)
   end
 
   private
-    def get_project
-      @project = Project.find(params[:project_id])
-    end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = @project.tasks.where("project_id = ? AND id = ?", params[:project_id], params[:id])
-      [@project, @task = @task.first]
-    end
+  def get_project
+    @project = Project.find(params[:project_id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def task_params
-      params.require(:task).permit(:name, :completed, :project_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = @project.tasks.where('project_id = ? AND id = ?', params[:project_id], params[:id])
+    [@project, @task = @task.first]
+  end
+
+  # Only allow a list of trusted parameters through.
+  def task_params
+    params.require(:task).permit(:name, :completed, :project_id)
+  end
 end
