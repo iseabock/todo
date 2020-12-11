@@ -17,7 +17,7 @@
     - @tasks.each do |task|
       %tr
         %td=task.name
-        %td=task.completed ? "[X]" : "[ ]"
+        %td=task.completed
         %td=link_to 'Edit', edit_project_task_path(@project, task)
         %td=link_to 'Audit Trail', project_task_versions_path(@project, task)
 

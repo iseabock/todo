@@ -3,8 +3,14 @@
 require 'rails_helper'
 
 feature 'Creating a task' do
+  before(:each) do
+    user = User.create!(email: "example@example.com", password: "letmein")
+    visit root_path(as: user)
+  end
+
+  let!(:project) { Project.create(name: 'Test Project') }
   scenario 'redirects to the tasks index page on success' do
-    visit tasks_path
+    visit project_tasks_path(project)
     click_on 'Add a task'
     expect(page).to have_content('Create a task')
 
@@ -16,7 +22,7 @@ feature 'Creating a task' do
   end
 
   scenario 'displays an error when no name is provided' do
-    visit new_task_path
+    visit new_project_task_path(project)
     fill_in 'Name', with: ''
     click_button 'Save'
 

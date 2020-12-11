@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :task do
-    name { 'MyString' }
+    name { 'MyTask' }
     completed { false }
   end
 end
