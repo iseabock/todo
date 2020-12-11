@@ -1,4 +1,9 @@
 %h1 Tasks
+%h3 Filter by Completed status
+%ul
+  %li=link_to 'All', project_tasks_path(filter: 'all')
+  %li=link_to 'Completed', project_tasks_path(filter: 'completed')
+  %li=link_to 'Not Completed', project_tasks_path(filter: 'not_completed')
 
 %table
   %thead
@@ -7,17 +12,17 @@
       %th Completed
       %th
       %th
-      %th
 
   %tbody
     - @tasks.each do |task|
       %tr
         %td=task.name
         %td=task.completed
-        %td=link_to 'Show', task
-        %td=link_to 'Edit', edit_task_path(task)
-        %td=link_to 'Destroy', task, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td=link_to 'Edit', edit_project_task_path(@project, task)
+        %td=link_to 'Audit Trail', project_task_versions_path(@project, task)
 
 %br
 
-=link_to 'Add a task', new_task_path
+=link_to 'Project Menu', projects_path
+\|
+=link_to 'Add a task', new_project_task_path

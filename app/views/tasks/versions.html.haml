@@ -1,0 +1,12 @@
+%h1 Versions
+
+- if @versions.empty?
+    %p This task has no versions other than the original.
+- else
+    %ul
+    - @versions.each do |version|
+        %li #{version.object}
+
+=link_to 'Back', project_tasks_path(@project)
+\|
+=link_to 'Add a task', new_project_task_path
